@@ -38,8 +38,6 @@ A **production-ready** AI-powered medical scribe system that provides **real-tim
 - **Pedalboard**: Professional audio effects for medical environments
 - **noisereduce**: Advanced noise reduction optimized for speech
 - **librosa**: Audio feature extraction for speaker detection
-- **webrtcvad**: Voice activity detection
-- **scikit-learn**: Lightweight speaker clustering
 
 ### Frontend
 - **React 19**: Modern JavaScript framework with hooks
