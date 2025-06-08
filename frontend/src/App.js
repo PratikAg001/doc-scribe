@@ -821,75 +821,75 @@ function App() {
     );
   };
 
-  const LearningAnalytics = () => {
-    if (!learningAnalytics) return null;
+  // const LearningAnalytics = () => {
+  //   if (!learningAnalytics) return null;
 
-    return (
-      <div className="bg-white rounded-lg shadow-lg p-6 mb-8">
-        <h3 className="text-xl font-semibold text-gray-800 mb-4 flex items-center">
-          📊 AI Learning Progress
-          <span className="ml-2 text-sm font-normal text-green-600">
-            System improving with your feedback
-          </span>
-        </h3>
+  //   return (
+  //     <div className="bg-white rounded-lg shadow-lg p-6 mb-8">
+  //       <h3 className="text-xl font-semibold text-gray-800 mb-4 flex items-center">
+  //         📊 AI Learning Progress
+  //         <span className="ml-2 text-sm font-normal text-green-600">
+  //           System improving with your feedback
+  //         </span>
+  //       </h3>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-          <div className="bg-blue-50 p-4 rounded-lg">
-            <div className="text-2xl font-bold text-blue-600">
-              {learningAnalytics.total_sessions_with_feedback}
-            </div>
-            <div className="text-sm text-gray-600">Sessions with Feedback</div>
-          </div>
+  //       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+  //         <div className="bg-blue-50 p-4 rounded-lg">
+  //           <div className="text-2xl font-bold text-blue-600">
+  //             {learningAnalytics.total_sessions_with_feedback}
+  //           </div>
+  //           <div className="text-sm text-gray-600">Sessions with Feedback</div>
+  //         </div>
           
-          <div className="bg-green-50 p-4 rounded-lg">
-            <div className="text-2xl font-bold text-green-600">
-              {learningAnalytics.average_satisfaction}/5
-            </div>
-            <div className="text-sm text-gray-600">Average Satisfaction</div>
-          </div>
+  //         <div className="bg-green-50 p-4 rounded-lg">
+  //           <div className="text-2xl font-bold text-green-600">
+  //             {learningAnalytics.average_satisfaction}/5
+  //           </div>
+  //           <div className="text-sm text-gray-600">Average Satisfaction</div>
+  //         </div>
           
-          <div className="bg-purple-50 p-4 rounded-lg">
-            <div className="text-2xl font-bold text-purple-600">
-              {learningAnalytics.total_time_saved_minutes}m
-            </div>
-            <div className="text-sm text-gray-600">Total Time Saved</div>
-          </div>
-        </div>
+  //         <div className="bg-purple-50 p-4 rounded-lg">
+  //           <div className="text-2xl font-bold text-purple-600">
+  //             {learningAnalytics.total_time_saved_minutes}m
+  //           </div>
+  //           <div className="text-sm text-gray-600">Total Time Saved</div>
+  //         </div>
+  //       </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <h4 className="font-medium text-gray-700 mb-2">Common Improvements</h4>
-            <div className="space-y-1">
-              {Object.entries(learningAnalytics.common_edit_types).map(([type, count]) => (
-                <div key={type} className="flex justify-between text-sm">
-                  <span className="capitalize">{type.replace('_', ' ')}</span>
-                  <span className="text-gray-500">{count}</span>
-                </div>
-              ))}
-            </div>
-          </div>
+  //       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+  //         <div>
+  //           <h4 className="font-medium text-gray-700 mb-2">Common Improvements</h4>
+  //           <div className="space-y-1">
+  //             {Object.entries(learningAnalytics.common_edit_types).map(([type, count]) => (
+  //               <div key={type} className="flex justify-between text-sm">
+  //                 <span className="capitalize">{type.replace('_', ' ')}</span>
+  //                 <span className="text-gray-500">{count}</span>
+  //               </div>
+  //             ))}
+  //           </div>
+  //         </div>
           
-          <div>
-            <h4 className="font-medium text-gray-700 mb-2">Learning Trends</h4>
-            <div className="space-y-1 text-sm">
-              <div className="flex items-center">
-                <span className="text-green-500 mr-2">📈</span>
-                <span>Accuracy: {learningAnalytics.improvement_trends.accuracy_trend}</span>
-              </div>
-              <div className="flex items-center">
-                <span className="text-blue-500 mr-2">📉</span>
-                <span>Edit frequency: {learningAnalytics.improvement_trends.edit_frequency}</span>
-              </div>
-              <div className="flex items-center">
-                <span className="text-purple-500 mr-2">🎯</span>
-                <span>Confidence: {learningAnalytics.improvement_trends.confidence_calibration}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  };
+  //         <div>
+  //           <h4 className="font-medium text-gray-700 mb-2">Learning Trends</h4>
+  //           <div className="space-y-1 text-sm">
+  //             <div className="flex items-center">
+  //               <span className="text-green-500 mr-2">📈</span>
+  //               <span>Accuracy: {learningAnalytics.improvement_trends.accuracy_trend}</span>
+  //             </div>
+  //             <div className="flex items-center">
+  //               <span className="text-blue-500 mr-2">📉</span>
+  //               <span>Edit frequency: {learningAnalytics.improvement_trends.edit_frequency}</span>
+  //             </div>
+  //             <div className="flex items-center">
+  //               <span className="text-purple-500 mr-2">🎯</span>
+  //               <span>Confidence: {learningAnalytics.improvement_trends.confidence_calibration}</span>
+  //             </div>
+  //           </div>
+  //         </div>
+  //       </div>
+  //     </div>
+  //   );
+  // };
 
   const displayTranscript = finalTranscript + (liveTranscript ? ` ${liveTranscript}` : '');
 
@@ -1227,7 +1227,7 @@ function App() {
         )}
 
         {/* Learning Analytics */}
-        <LearningAnalytics />
+        {/* <LearningAnalytics /> */}
 
         {/* Session History */}
         <div className="bg-white rounded-lg shadow-lg p-6">
