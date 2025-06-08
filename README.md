@@ -90,7 +90,7 @@ AZURE_OPENAI_API_VERSION=2024-02-15-preview
 
 4. **Start the backend server**
 ```bash
-python server.py
+python main.py
 ```
 
 ### Frontend Setup
