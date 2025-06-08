@@ -29,7 +29,7 @@ A **production-ready** AI-powered medical scribe system that provides **real-tim
 
 ### Backend
 - **FastAPI**: High-performance async Python web framework
-- **Deepgram Nova-2**: Real-time speech-to-text API with medical optimization
+- **Deepgram Nova-3-Medical**: Real-time speech-to-text API with medical optimization
 - **Azure OpenAI GPT-4o mini**: Clinical note generation with source citations
 - **MongoDB**: Session storage and audit trail
 - **WebSockets**: Real-time audio streaming and transcription
