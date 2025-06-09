@@ -56,6 +56,7 @@ class TranscriptionService:
                 # Extract transcript
                 if response.results and response.results.channels:
                     transcript = response.results.channels[0].alternatives[0].transcript
+                    print(transcript)
                     return transcript or ""
                 else:
                     return ""
@@ -100,6 +101,7 @@ class TranscriptionService:
                 # Extract transcript
                 if response.results and response.results.channels:
                     transcript = response.results.channels[0].alternatives[0].transcript
+                    print(transcript)
                     return transcript or ""
                 else:
                     return ""

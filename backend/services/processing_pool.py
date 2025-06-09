@@ -4,6 +4,13 @@ import time
 from typing import Dict, Any, Optional, Callable
 from concurrent.futures import ThreadPoolExecutor, ProcessPoolExecutor
 from config.settings import settings
+from pedalboard import Pedalboard, Compressor, NoiseGate, Gain, LowShelfFilter
+board = Pedalboard([
+                NoiseGate(threshold_db=-30, ratio=1.5, release_ms=250),
+                Compressor(threshold_db=-16, ratio=4),
+                LowShelfFilter(cutoff_frequency_hz=400, gain_db=10, q=1),
+                Gain(gain_db=4),
+            ])
 
 logger = logging.getLogger(__name__)
 
@@ -115,7 +122,7 @@ class AudioProcessingPool:
             
         except Exception as e:
             self._processing_stats["failed_tasks"] += 1
-            logger.error(f"Audio processing failed for {task_id}: {e}")
+            # logger.error(f"Audio processing failed for {task_id}: {e}")
             return audio_data  # Return original audio as fallback
         finally:
             # Clean up task reference
@@ -242,7 +249,15 @@ class AudioProcessingPool:
                             prop_decrease=0.7,
                             stationary=True
                         )
-                        audio_array = reduced_noise
+                        board = Pedalboard([
+                            NoiseGate(threshold_db=-30, ratio=1.5, release_ms=250),
+                            Compressor(threshold_db=-16, ratio=4),
+                            LowShelfFilter(cutoff_frequency_hz=400, gain_db=10, q=1),
+                            Gain(gain_db=4),
+                        ])
+                        processed = board(reduced_noise, settings.audio_sample_rate)
+                        pcm_16_data = np.clip(processed * 32768.0, -32768, 32767).astype(np.int16)
+                        return pcm_16_data.tobytes()
                     except Exception as e:
                         logger.warning(f"Enhanced processing failed: {e}")
             

@@ -6,7 +6,7 @@ from typing import Dict, Any, List
 from openai import AzureOpenAI
 from config.settings import settings
 from models.soap import SOAPResponse
-
+import time
 logger = logging.getLogger(__name__)
 
 class SOAPGeneratorService:
@@ -38,7 +38,7 @@ class SOAPGeneratorService:
             
             # Generate SOAP note with source mapping
             soap_data = await self._generate_structured_soap(transcript_segments)
-            
+            print(soap_data)
             # Add source text to each statement
             self._add_source_text_to_statements(soap_data["soap_sections"], transcript_segments)
             
@@ -121,9 +121,13 @@ Make sure to:
 - Reference specific segment numbers that support each statement
 - Use proper medical terminology
 - Be thorough but concise
+- MUST NOT ADD ANY PLACEHOLDER OR ANY EXTRA SYMBOL, THE RESPONSE SHOULD BE IN PROPER JSON FORMAT.
+- Do NOT include triple backticks or any other formatting characters in the output.
+
 """
 
         try:
+            start = time.time()
             response = self.client.chat.completions.create(
                 model=self.model,
                 messages=[
@@ -136,6 +140,7 @@ Make sure to:
             
             # Parse JSON response
             soap_data = json.loads(response.choices[0].message.content)
+            print(f"Time taken to generate soap: {time.time()-start}")
             return soap_data
             
         except json.JSONDecodeError as e:
